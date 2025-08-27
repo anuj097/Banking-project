@@ -9,6 +9,7 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import my.project.bankingsystem.bank.customvalidator.ValidLength;
 
 @Data
 @AllArgsConstructor
@@ -30,5 +31,6 @@ public class AccountDto implements Serializable{
 
     private BigDecimal availableBalance;
 
+    @ValidLength
     private Long userId;
 }

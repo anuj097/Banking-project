@@ -33,7 +33,7 @@ public class BankingServiceimpl implements BankingService {
 	@Autowired
 	private AccountRepo accountRepo;
 
-	@SuppressWarnings("unchecked")
+	//@SuppressWarnings("unchecked")
 	@Override
 	public Response createAccount(AccountDto accountDto) {
 		
