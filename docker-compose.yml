@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  service-a:
+    build: ./banking
+    ports:
+      - '9090:9090'
+
+  service-b:
+    build: ./Fund-Transfer
+    ports:
+      - '9191:9191'
+    depends_on:
+      - service-a
