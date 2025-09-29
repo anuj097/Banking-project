@@ -2,20 +2,17 @@ package my.project.bankingsystem.bank.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity
+//@EnableMethodSecurity
 public class AccountSecurity {
 
 	@Bean
@@ -40,7 +37,7 @@ public class AccountSecurity {
 		// <-----
 
 	}
-
+/*
 	@Bean
 	public SecurityFilterChain fileChain(HttpSecurity http) throws Exception {
 
@@ -76,7 +73,7 @@ public class AccountSecurity {
 		// httpSecurity.oauth2Login().loginPage("/create").permitAll()
 
 		return http.build();
-	}
+	} 
 
 	@Bean
 	public AuthenticationEntryPoint restAuthenticationEntryPoint() {
@@ -85,6 +82,11 @@ public class AccountSecurity {
 			response.setStatus(HttpStatus.UNAUTHORIZED.value());
 			response.getWriter().write("{\"error\": \"Unauthorized\", \"message\": \"Authentication required\"}");
 		};
-	}
+	} */
+	
+	@Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration builder) throws Exception {
+        return builder.getAuthenticationManager();
+    }
 
 }

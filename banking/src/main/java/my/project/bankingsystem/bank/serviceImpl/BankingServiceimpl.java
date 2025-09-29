@@ -1,7 +1,7 @@
 package my.project.bankingsystem.bank.serviceImpl;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -206,6 +206,13 @@ public class BankingServiceimpl implements BankingService {
 		}
 		log.info("closeAccount serivce ended!!!");
 		return Response.builder().responseCode("200").message("Account is closed successfully!!").build();
+	}
+
+	@Override
+	public List<AccountDto> getTop3Accounts() {
+		List<AccountEntity> listEntity = accountRepo.findByAvailableBalance(); 
+		List<AccountDto> listDto = listEntity.stream().map(ObjectMapper::entityToDto).toList();
+		return listDto;
 	}
 	
 	

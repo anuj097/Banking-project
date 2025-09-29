@@ -1,5 +1,8 @@
 package my.project.bankingsystem.bank.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -100,6 +103,20 @@ public class BankingController {
 		return new ResponseEntity<>(res, HttpStatus.OK);
 	}
 	
+	@PostMapping("/top3Account")
+	public ResponseEntity<List<AccountDto>> getTop3Account(@RequestParam String by) {
+		List<AccountDto> listDto = new ArrayList<>();
+		if(by.equals("availableBalance")) {
+			listDto = bankService.getTop3Accounts();
+		}else {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		if(listDto!=null) {
+			return new ResponseEntity<>(listDto, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 	
 	
 

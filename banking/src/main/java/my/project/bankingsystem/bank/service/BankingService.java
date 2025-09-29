@@ -19,4 +19,6 @@ public interface BankingService {
 	public String getBalance(String accountNumber);
 
 	public Response closeAccount(String accountNumber);
+	
+	public List<AccountDto> getTop3Accounts();
 }
